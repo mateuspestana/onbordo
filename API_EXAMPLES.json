@@ -1,0 +1,379 @@
+{
+  "api_examples": {
+    "root_endpoint": {
+      "url": "GET /",
+      "response": {
+        "name": "OnBordo - API de Veleiros",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "openapi": "/openapi.json",
+        "endpoints": {
+          "boats": "/boats",
+          "schema": "/schema"
+        }
+      }
+    },
+    "schema_endpoint": {
+      "url": "GET /schema",
+      "response": {
+        "columns": [
+          {"name": "id", "dtype": "mixed"},
+          {"name": "ID do Barco", "dtype": "mixed"},
+          {"name": "Preço por Dia (R$)", "dtype": "mixed"},
+          {"name": "Nome do Barco", "dtype": "mixed"},
+          {"name": "Marina/Porto", "dtype": "mixed"},
+          {"name": "Pés", "dtype": "mixed"},
+          {"name": "Tripulantes", "dtype": "mixed"},
+          {"name": "Preço do Arrais (R$)", "dtype": "mixed"},
+          {"name": "Outros Serviços", "dtype": "mixed"}
+        ],
+        "aliases": [
+          {"alias": "id", "column": "id"},
+          {"alias": "id_do_barco", "column": "ID do Barco"},
+          {"alias": "preco_por_dia_rs", "column": "Preço por Dia (R$)"},
+          {"alias": "nome_do_barco", "column": "Nome do Barco"},
+          {"alias": "marina_porto", "column": "Marina/Porto"},
+          {"alias": "pes", "column": "Pés"},
+          {"alias": "tripulantes", "column": "Tripulantes"},
+          {"alias": "preco_do_arrais_rs", "column": "Preço do Arrais (R$)"},
+          {"alias": "outros_servicos", "column": "Outros Serviços"}
+        ],
+        "services_column": "Outros Serviços",
+        "count": 32
+      }
+    },
+    "boats_list_all": {
+      "url": "GET /boats",
+      "response": {
+        "total": 32,
+        "count": 32,
+        "items": [
+          {
+            "id": 0,
+            "ID do Barco": 1,
+            "Preço por Dia (R$)": 2497,
+            "Nome do Barco": "Vento Carioca",
+            "Marina/Porto": "Ilha Grande",
+            "Pés": 25,
+            "Tripulantes": 6,
+            "Preço do Arrais (R$)": 400,
+            "Outros Serviços": "Pesca"
+          },
+          {
+            "id": 1,
+            "ID do Barco": 2,
+            "Preço por Dia (R$)": 1465,
+            "Nome do Barco": "Maré Alta",
+            "Marina/Porto": "Urca - Rio de Janeiro",
+            "Pés": 50,
+            "Tripulantes": 16,
+            "Preço do Arrais (R$)": 200,
+            "Outros Serviços": "Mergulho guiado, Travessia"
+          }
+        ]
+      }
+    },
+    "boats_with_pagination": {
+      "url": "GET /boats?limit=5&offset=10",
+      "response": {
+        "total": 32,
+        "count": 5,
+        "items": [
+          {
+            "id": 10,
+            "ID do Barco": 11,
+            "Preço por Dia (R$)": 1890,
+            "Nome do Barco": "Brisa do Mar",
+            "Marina/Porto": "Cabo Frio",
+            "Pés": 35,
+            "Tripulantes": 8,
+            "Preço do Arrais (R$)": 300,
+            "Outros Serviços": "Travessia"
+          }
+        ]
+      }
+    },
+    "boats_price_filter": {
+      "url": "GET /boats?preco_por_dia_rs__gte=2500&limit=3",
+      "response": {
+        "total": 15,
+        "count": 3,
+        "items": [
+          {
+            "id": 0,
+            "ID do Barco": 1,
+            "Preço por Dia (R$)": 2497,
+            "Nome do Barco": "Vento Carioca",
+            "Marina/Porto": "Ilha Grande",
+            "Pés": 25,
+            "Tripulantes": 6,
+            "Preço do Arrais (R$)": 400,
+            "Outros Serviços": "Pesca"
+          },
+          {
+            "id": 2,
+            "ID do Barco": 3,
+            "Preço por Dia (R$)": 2954,
+            "Nome do Barco": "Sol de Paraty",
+            "Marina/Porto": "Paraty",
+            "Pés": 40,
+            "Tripulantes": 14,
+            "Preço do Arrais (R$)": 400,
+            "Outros Serviços": "Travessia, Pesca, Mergulho guiado"
+          }
+        ]
+      }
+    },
+    "boats_marina_filter": {
+      "url": "GET /boats?marina_porto__contains=Rio&sort_by=preco_por_dia_rs",
+      "response": {
+        "total": 8,
+        "count": 8,
+        "items": [
+          {
+            "id": 1,
+            "ID do Barco": 2,
+            "Preço por Dia (R$)": 1465,
+            "Nome do Barco": "Maré Alta",
+            "Marina/Porto": "Urca - Rio de Janeiro",
+            "Pés": 50,
+            "Tripulantes": 16,
+            "Preço do Arrais (R$)": 200,
+            "Outros Serviços": "Mergulho guiado, Travessia"
+          },
+          {
+            "id": 3,
+            "ID do Barco": 4,
+            "Preço por Dia (R$)": 2495,
+            "Nome do Barco": "Ilha Encantada",
+            "Marina/Porto": "Marina da Glória - Rio de Janeiro",
+            "Pés": 20,
+            "Tripulantes": 6,
+            "Preço do Arrais (R$)": 0,
+            "Outros Serviços": "Travessia"
+          }
+        ]
+      }
+    },
+    "boats_services_filter": {
+      "url": "GET /boats?services_any=Pesca,Mergulho&limit=3",
+      "response": {
+        "total": 18,
+        "count": 3,
+        "items": [
+          {
+            "id": 0,
+            "ID do Barco": 1,
+            "Preço por Dia (R$)": 2497,
+            "Nome do Barco": "Vento Carioca",
+            "Marina/Porto": "Ilha Grande",
+            "Pés": 25,
+            "Tripulantes": 6,
+            "Preço do Arrais (R$)": 400,
+            "Outros Serviços": "Pesca"
+          },
+          {
+            "id": 1,
+            "ID do Barco": 2,
+            "Preço por Dia (R$)": 1465,
+            "Nome do Barco": "Maré Alta",
+            "Marina/Porto": "Urca - Rio de Janeiro",
+            "Pés": 50,
+            "Tripulantes": 16,
+            "Preço do Arrais (R$)": 200,
+            "Outros Serviços": "Mergulho guiado, Travessia"
+          }
+        ]
+      }
+    },
+    "boats_multiple_filters": {
+      "url": "GET /boats?pes__gte=35&tripulantes__gte=10&preco_por_dia_rs__between=1500,3000&sort_by=-pes",
+      "response": {
+        "total": 12,
+        "count": 12,
+        "items": [
+          {
+            "id": 1,
+            "ID do Barco": 2,
+            "Preço por Dia (R$)": 1465,
+            "Nome do Barco": "Maré Alta",
+            "Marina/Porto": "Urca - Rio de Janeiro",
+            "Pés": 50,
+            "Tripulantes": 16,
+            "Preço do Arrais (R$)": 200,
+            "Outros Serviços": "Mergulho guiado, Travessia"
+          },
+          {
+            "id": 2,
+            "ID do Barco": 3,
+            "Preço por Dia (R$)": 2954,
+            "Nome do Barco": "Sol de Paraty",
+            "Marina/Porto": "Paraty",
+            "Pés": 40,
+            "Tripulantes": 14,
+            "Preço do Arrais (R$)": 400,
+            "Outros Serviços": "Travessia, Pesca, Mergulho guiado"
+          }
+        ]
+      }
+    },
+    "boats_column_projection": {
+      "url": "GET /boats?columns=id,nome_do_barco,preco_por_dia_rs,marina_porto&limit=3",
+      "response": {
+        "total": 32,
+        "count": 3,
+        "items": [
+          {
+            "id": 0,
+            "Nome do Barco": "Vento Carioca",
+            "Preço por Dia (R$)": 2497,
+            "Marina/Porto": "Ilha Grande"
+          },
+          {
+            "id": 1,
+            "Nome do Barco": "Maré Alta",
+            "Preço por Dia (R$)": 1465,
+            "Marina/Porto": "Urca - Rio de Janeiro"
+          },
+          {
+            "id": 2,
+            "Nome do Barco": "Sol de Paraty",
+            "Preço por Dia (R$)": 2954,
+            "Marina/Porto": "Paraty"
+          }
+        ]
+      }
+    },
+    "boat_detail": {
+      "url": "GET /boats/0",
+      "response": {
+        "id": 0,
+        "ID do Barco": 1,
+        "Preço por Dia (R$)": 2497,
+        "Nome do Barco": "Vento Carioca",
+        "Marina/Porto": "Ilha Grande",
+        "Pés": 25,
+        "Tripulantes": 6,
+        "Preço do Arrais (R$)": 400,
+        "Outros Serviços": "Pesca"
+      }
+    },
+    "boat_not_found": {
+      "url": "GET /boats/999",
+      "response": {
+        "detail": "Barco não encontrado"
+      },
+      "status_code": 404
+    },
+    "error_invalid_column": {
+      "url": "GET /boats?coluna_inexistente=valor",
+      "response": {
+        "detail": "Coluna desconhecida para filtro: coluna_inexistente"
+      },
+      "status_code": 400
+    },
+    "error_invalid_operator": {
+      "url": "GET /boats?preco_por_dia_rs__operador_invalido=1000",
+      "response": {
+        "detail": "Operador desconhecido: operador_invalido (coluna Preço por Dia (R$))"
+      },
+      "status_code": 400
+    },
+    "error_invalid_between": {
+      "url": "GET /boats?preco_por_dia_rs__between=1000",
+      "response": {
+        "detail": "Filtro between inválido para Preço por Dia (R$). Use min,max"
+      },
+      "status_code": 400
+    },
+    "complex_search_scenarios": {
+      "luxury_boats_paraty": {
+        "url": "GET /boats?marina_porto=Paraty&preco_por_dia_rs__gte=2500&pes__gte=35&services_any=Mergulho,Pesca&sort_by=-preco_por_dia_rs",
+        "description": "Barcos de luxo em Paraty com serviços de mergulho ou pesca",
+        "response": {
+          "total": 3,
+          "count": 3,
+          "items": [
+            {
+              "id": 2,
+              "ID do Barco": 3,
+              "Preço por Dia (R$)": 2954,
+              "Nome do Barco": "Sol de Paraty",
+              "Marina/Porto": "Paraty",
+              "Pés": 40,
+              "Tripulantes": 14,
+              "Preço do Arrais (R$)": 400,
+              "Outros Serviços": "Travessia, Pesca, Mergulho guiado"
+            }
+          ]
+        }
+      },
+      "budget_boats_rio": {
+        "url": "GET /boats?marina_porto__contains=Rio&preco_por_dia_rs__lt=2000&preco_do_arrais_rs__lte=200&sort_by=preco_por_dia_rs",
+        "description": "Barcos econômicos no Rio com arrais barato",
+        "response": {
+          "total": 5,
+          "count": 5,
+          "items": [
+            {
+              "id": 1,
+              "ID do Barco": 2,
+              "Preço por Dia (R$)": 1465,
+              "Nome do Barco": "Maré Alta",
+              "Marina/Porto": "Urca - Rio de Janeiro",
+              "Pés": 50,
+              "Tripulantes": 16,
+              "Preço do Arrais (R$)": 200,
+              "Outros Serviços": "Mergulho guiado, Travessia"
+            }
+          ]
+        }
+      },
+      "large_group_boats": {
+        "url": "GET /boats?tripulantes__gte=12&services_all=Travessia,Mergulho&columns=id,nome_do_barco,tripulantes,marina_porto,outros_servicos",
+        "description": "Barcos para grupos grandes com travessia E mergulho",
+        "response": {
+          "total": 4,
+          "count": 4,
+          "items": [
+            {
+              "id": 1,
+              "Nome do Barco": "Maré Alta",
+              "Tripulantes": 16,
+              "Marina/Porto": "Urca - Rio de Janeiro",
+              "Outros Serviços": "Mergulho guiado, Travessia"
+            },
+            {
+              "id": 2,
+              "Nome do Barco": "Sol de Paraty",
+              "Tripulantes": 14,
+              "Marina/Porto": "Paraty",
+              "Outros Serviços": "Travessia, Pesca, Mergulho guiado"
+            }
+          ]
+        }
+      },
+      "no_captain_boats": {
+        "url": "GET /boats?preco_do_arrais_rs__isnull=true&sort_by=marina_porto,preco_por_dia_rs",
+        "description": "Barcos sem capitão (preço arrais nulo)",
+        "response": {
+          "total": 8,
+          "count": 8,
+          "items": [
+            {
+              "id": 3,
+              "ID do Barco": 4,
+              "Preço por Dia (R$)": 2495,
+              "Nome do Barco": "Ilha Encantada",
+              "Marina/Porto": "Marina da Glória - Rio de Janeiro",
+              "Pés": 20,
+              "Tripulantes": 6,
+              "Preço do Arrais (R$)": 0,
+              "Outros Serviços": "Travessia"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
