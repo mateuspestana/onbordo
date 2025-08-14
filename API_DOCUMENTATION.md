@@ -4,13 +4,8 @@ API FastAPI para aluguel de veleiros que lê dados de `base_barcos_dummy.xlsx` e
 
 ## Base URL
 ```
-http://127.0.0.1:8000
+https://onbordo.onrender.com/
 ```
-
-## Documentação Interativa
-- **Swagger UI**: `http://127.0.0.1:8000/docs`
-- **ReDoc**: `http://127.0.0.1:8000/redoc`
-
 ---
 
 ## 📋 Endpoints Disponíveis
